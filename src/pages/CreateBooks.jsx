@@ -10,6 +10,7 @@ export const CreateBooks = () => {
   const [publishYear, setPublishYear] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
   const handleSaveBook = () => {
     const data = {
@@ -19,7 +20,7 @@ export const CreateBooks = () => {
     };
     setLoading(true);
     axios
-      .post(`http://localhost:5555/books`, data)
+      .post(`${BACKEND_URL}/books`, data)
       .then(() => {
         setLoading(false);
         navigate("/");
