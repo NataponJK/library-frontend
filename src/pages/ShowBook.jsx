@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios, { AxiosHeaders } from 'axios'
+import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { BackButton } from '../components/BackButton'
 import { Spinner } from '../components/Spinner'
@@ -7,12 +7,14 @@ import { Spinner } from '../components/Spinner'
 export const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
-  const {id} = useParams();
+  const { id } = useParams();
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     setLoading(true);
     axios
-    .get(`http://localhost:5555/books/${id}`)
+    .get(`${BACKEND_URL}/books/${id}`)
     .then((response) => {
       setBook(response.data);
       setLoading(false);
